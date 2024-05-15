@@ -27,6 +27,9 @@ func InitDB() error {
 	if err != nil {
 		return err
 	}
+
+	db.Exec("PRAGMA foreign_keys = ON;")
+
 	DB = db
 	return nil
 }

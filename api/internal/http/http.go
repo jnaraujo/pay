@@ -22,4 +22,5 @@ func registerRoutes(app *fiber.App) {
 	router := app.Group("/api/v1")
 	router.Get("/", routes.GetRoot)
 	router.Post("/user", routes.CreateUserRoute)
+	router.Post("/game", routes.CreateGameRoute)
 }

@@ -4,16 +4,17 @@ import (
 	"net/http"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/google/uuid"
 	"github.com/jnaraujo/pay/internal/services"
 	"github.com/jnaraujo/pay/internal/validate"
 )
 
-type CreateUserSchema struct {
-	Name string `json:"name" validate:"required"`
+type CreateGameSchema struct {
+	OwnerId uuid.UUID `json:"owner_id" validate:"required"`
 }
 
-func CreateUserRoute(c *fiber.Ctx) error {
-	var body CreateUserSchema
+func CreateGameRoute(c *fiber.Ctx) error {
+	var body CreateGameSchema
 	if err := c.BodyParser(&body); err != nil {
 		return c.Status(http.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
 	}
@@ -22,10 +23,10 @@ func CreateUserRoute(c *fiber.Ctx) error {
 		return c.Status(http.StatusBadRequest).JSON(fiber.Map{"error": errs})
 	}
 
-	createdUser, err := services.CreateUser(body.Name)
+	game, err := services.CreateGame(body.OwnerId)
 	if err != nil {
 		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 	}
 
-	return c.Status(http.StatusCreated).JSON(createdUser)
+	return c.Status(http.StatusCreated).JSON(game)
 }

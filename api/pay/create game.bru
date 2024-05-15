@@ -1,0 +1,17 @@
+meta {
+  name: create game
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3000/api/v1/game
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "owner_id": "789b605e-d3fd-4a62-b9a3-2387a5ec454d"
+  }
+}
