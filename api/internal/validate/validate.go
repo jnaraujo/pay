@@ -1,6 +1,10 @@
 package validate
 
-import "github.com/go-playground/validator/v10"
+import (
+	"encoding/json"
+
+	"github.com/go-playground/validator/v10"
+)
 
 var validate = validator.New()
 
@@ -30,4 +34,20 @@ func Validate(data interface{}) []ErrorResponse {
 	}
 
 	return validationErrors
+}
+
+func ParseAndValidate(body []byte, out any) []ErrorResponse {
+	err := json.Unmarshal(body, out)
+	if err != nil {
+		return []ErrorResponse{
+			{
+				Error:       true,
+				FailedField: "body",
+				Tag:         "json",
+				Value:       err.Error(),
+			},
+		}
+	}
+
+	return Validate(out)
 }

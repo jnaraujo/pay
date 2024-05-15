@@ -1,0 +1,19 @@
+meta {
+  name: transfer payment
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:3000/api/v1/transfer
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "sender_id": "b783b6c8-5c08-45fd-a00a-d4271529d376",
+    "receiver_id": "93d72dea-e18c-4637-b90c-519c330a7388",
+    "amount": 10
+  }
+}

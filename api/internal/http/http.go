@@ -23,4 +23,5 @@ func registerRoutes(app *fiber.App) {
 	router.Get("/", routes.GetRoot)
 	router.Post("/user", routes.CreateUserRoute)
 	router.Post("/game", routes.CreateGameRoute)
+	router.Post("/transfer", routes.TransferPaymentRoute)
 }

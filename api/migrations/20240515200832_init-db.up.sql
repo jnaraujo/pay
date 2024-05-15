@@ -11,6 +11,7 @@ create table if not exists users (
 	name text not null,
 	created_at date null,
 	game_id text null,
+	balance integer default 0,
 
 	foreign key (game_id) references games(id) on delete cascade
 );
