@@ -3,7 +3,7 @@ package http
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/jnaraujo/pay/internal/config"
-	"github.com/jnaraujo/pay/internal/http/routes"
+	"github.com/jnaraujo/pay/internal/routes"
 )
 
 func NewServer() error {
